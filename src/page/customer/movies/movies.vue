@@ -6,15 +6,13 @@
         <span class="back-text">返回</span>
       </div>
       <div class="title" slot="title">{{moviesInfo.name}}</div>
-      <!-- <van-icon name="search" slot="right" @click="onClickRight" /> -->
     </van-nav-bar>
     <div class="body">
       <van-card
         :num="moviesInfo.num"
         :desc="moviesInfo.content"
         :title="moviesInfo.title"
-        :thumb="moviesInfo.imgUrl"
-      >
+        :thumb="moviesInfo.imgUrl">
         <div slot="price">
           <div>{{ moviesInfo.upTime | formatTime('YYYY-MM-DD') }}  上映</div>
           <div>{{ moviesInfo.downTime | formatTime('YYYY-MM-DD') }}  下线</div>
@@ -78,6 +76,7 @@
           'infoItem': true,
           'color': i
           }"/>
+      </div>
       <van-submit-bar
         :price="total"
         :disabled="size == 0"
@@ -145,9 +144,6 @@ export default {
   methods: {
     onClickLeft () {
       this.$router.go(-1)
-    },
-    onClickRight () {
-
     },
     overLayClick () {
       this.showInput = false
