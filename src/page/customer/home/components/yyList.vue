@@ -92,8 +92,11 @@ export default {
               this.list.push(e)
             })
           }
-        }else {
+        } else {
           this.finished = true
+          if (reset) {
+            this.list = res.data
+          }
         }
         this.loading = false
         this.isLoading = false

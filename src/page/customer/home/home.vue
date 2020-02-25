@@ -12,9 +12,9 @@
       'body': true,
       'no-margin': noMarginTop
       }">
-      <keep-alive>
+      <!-- <keep-alive> -->
         <router-view/>
-      </keep-alive>
+      <!-- </keep-alive> -->
     </div>
     <div class="footer">
       <div style="width:100%;">

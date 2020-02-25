@@ -4,6 +4,7 @@ import Home from '@/page/customer/home/home'
 import DyList from '@/page/customer/home/components/dyList'
 import YyList from '@/page/customer/home/components/yyList'
 import order from '@/page/customer/home/components/order'
+import orderDetail from '@/page/customer/home/components/orderDetail'
 import My from '@/page/customer/home/components/my'
 import Movies from '@/page/customer/movies/movies'
 import AdminLogin from '@/page/admin/login/login'
@@ -30,6 +31,12 @@ export default new Router({
           path: 'order',
           name: 'order',
           component: order
+        },
+        {
+          path: 'orderDetail',
+          name: 'orderDetail',
+          component: orderDetail,
+          props: true
         },
         {
           path: 'my',

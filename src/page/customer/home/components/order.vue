@@ -11,7 +11,7 @@
           v-for="item in list"
           :key="item.id"
           :class="{'underline':true}"
-          @click="onClickItem(item.id, item.name)"
+          @click="onClickItem(item.info)"
         >
           <div slot="thumb">
             <van-image lazy-load :src="item.movieUrl" />
@@ -24,7 +24,7 @@
             <div class="content-item">{{item.title}}</div>
             <div class="content-item show-info" :title="item.content">{{item.content}}</div>
           </div>
-          <div slot="price">{{item.price}} * {{item.num}} = {{item.total}}</div>
+          <div slot="price">{{item.price | price(item.price)}} 元 * {{item.num}} = {{item.total | price(item.total)}} 元</div>
           <div slot="num" class="go">
             <van-button round size="mini" type="danger" v-if="item.status == 1">已付款</van-button>
             <van-button round size="mini" type="info" v-if="item.status == 0">
@@ -74,20 +74,19 @@ export default {
       this.size = 10
       this.loadData(true)
     },
-    go (id, name) {
+    go (info) {
       this.$router.push({
-        name: `movies`,
+        name: `orderDetail`,
         params: {
-          name: name,
-          id: id
+          info: info
         }
       })
     },
     outTime (time) {
       return (new Date(time)).getTime()
     },
-    onClickItem (id, name) {
-      this.go(id, name)
+    onClickItem (info) {
+      this.go(info)
     },
     loadData (reset = false, page = 1, size = 10) {
       this.$Get(this.$API.CUSTOMER.CustomerQueryOrder, {
