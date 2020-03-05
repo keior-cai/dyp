@@ -9,7 +9,7 @@
 // }
 
 // var baseUrl = 'http://localhost:9902/customer'
-var baseUrl = 'http://ccj.wezhuiyi.com/customer'
+var baseUrl = 'http://dyp.customer.com:9902/customer'
 // var baseUrl = 'http://47.106.78.139/customer'
 
 export const API = {
