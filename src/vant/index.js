@@ -28,7 +28,11 @@ import {
   SubmitBar,
   PasswordInput,
   NumberKeyboard,
-  Dialog
+  Dialog,
+  Divider,
+  CountDown,
+  Collapse,
+  CollapseItem 
 } from 'vant'
 
 import LazyLoad from 'vue-lazyload'
@@ -63,3 +67,7 @@ Vue.use(PasswordInput)
 Vue.use(NumberKeyboard)
 Vue.use(Dialog)
 Vue.use(LazyLoad, {vanImage: true})
+Vue.use(Divider)
+Vue.use(CountDown)
+Vue.use(Collapse)
+Vue.use(CollapseItem)

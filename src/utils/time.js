@@ -10,7 +10,7 @@ const filters = {
     return formatTime(time, format)
   },
   price: (price) => {
-    return Math.floor(price * 100) / 100
+    return price.toFixed(2)
   }
 }
 

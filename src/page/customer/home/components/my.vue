@@ -190,6 +190,7 @@ export default {
   z-index 2
 .image
   background-color #e54847
+  padding-top 0.9375rem
 .body
   margin 0rem
 .wx-name

@@ -11,35 +11,35 @@
           v-for="item in list"
           :key="item.id"
           :class="{'underline':true}"
-          @click="onClickItem(item.info)"
+          @click="onClickItem(item)"
         >
           <div slot="thumb">
             <van-image lazy-load :src="item.movieUrl" />
           </div>
           <div class="title" slot="title">
-            {{item.movieName}}
+            <div class="van-ellipsis">{{item.movieName}}</div>
             <van-tag type="primary" size="medium" plain v-if="item.version">{{item.version}}</van-tag>
            </div>
           <div slot="desc" class="dy-cntent">
-            <div class="content-item">{{item.title}}</div>
-            <div class="content-item show-info" :title="item.content">{{item.content}}</div>
+            <div class="content-item">
+              <div class="van-ellipsis">{{item.title}}</div>
+            </div>
+            <div class="content-item show-info" :title="item.content">
+              <div class="van-ellipsis">{{item.content}}</div>
+            </div>
           </div>
-          <div slot="price">{{item.price | price(item.price)}} 元 * {{item.num}} = {{item.total | price(item.total)}} 元</div>
+          <div slot="price">{{item.price | price(item.price)}}  * {{item.num}} = {{item.total | price(item.total)}} 元</div>
           <div slot="num" class="go">
-            <van-button round size="mini" type="danger" v-if="item.status == 1">已付款</van-button>
-            <van-button round size="mini" type="info" v-if="item.status == 0">
+            <van-button type="danger" hairline v-if="item.status == 1">已付款</van-button>
+            <van-button type="default" plain hairline v-if="item.status == 0">
               待支付
             </van-button>
-            <van-count-down :time="5 *60 * 1000" v-if="item.status == 0">
-              <template v-slot="timeData">
-                <span class="item">{{timeData.minutes}}</span>
-                <span class="item">{{timeData.seconds}}</span>
-              </template>
-            </van-count-down>
-            <van-button round size="mini" type="info" v-if="item.status == 5">已超时</van-button>
-            <van-button round size="mini" type="info" v-if="item.status == 4">已完成</van-button>
-            <van-button round size="mini" type="info" v-if="item.status == 3">已过期</van-button>
-            <van-button round size="mini" type="info" v-if="item.status == 2">已出票</van-button>
+            <van-button type="warning" hairline v-if="item.status == 5">已超时</van-button>
+            <van-button type="danger" plain hairline disabled v-if="item.status == 6">已取消</van-button>
+            <van-button type="primary" plain hairline v-if="item.status == 4">已完成</van-button>
+            <van-button type="warning" plain hairline v-if="item.status == 3">已过期</van-button>
+            <van-button type="info" plain hairline v-if="item.status == 2">已出票</van-button>
+            <van-count-down :time="item.outTime" v-if="item.status == 0 && item.outTime > 0" />
           </div>
         </van-card>
         <div slot="loading">
@@ -75,18 +75,15 @@ export default {
       this.loadData(true)
     },
     go (info) {
-      this.$router.push({
-        name: `orderDetail`,
-        params: {
-          info: info
-        }
-      })
+      this.$router.push(`orderDetail/${info.orderSn}/${info.yId}`)
     },
     outTime (time) {
       return (new Date(time)).getTime()
     },
     onClickItem (info) {
-      this.go(info)
+      if (info.status == 1 || info.status == 0) {
+        this.go(info)
+      }
     },
     loadData (reset = false, page = 1, size = 10) {
       this.$Get(this.$API.CUSTOMER.CustomerQueryOrder, {
@@ -141,10 +138,8 @@ export default {
     display inline-block
     width 1.375rem
     margin-right 0.3125rem
-    color #fff
     font-size 0.75rem
     text-align center
-    background-color #1989FA
   >>> .underline
     border-bottom 0.03125rem solid #EEEEEE
   >>> .van-card

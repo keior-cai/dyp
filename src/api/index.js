@@ -23,6 +23,9 @@ export const API = {
     CustmerPayOrder : baseUrl + '/order/payOrder',
     CustmerInfo : baseUrl + '/my/info',
     CustomerQueryOrder : baseUrl + '/order/queryOrder',
+    CustomerCancelOrder : baseUrl + '/order/cancelOrder',
+    CustomerqueryByOrderSn : baseUrl + '/order/queryByOrderSn',
   },
 	UPLOADURL : 'http://47.106.78.139:8012/tame/dfs/uploadByFile',
+	QRCODE : baseUrl+ '/order/qrCode',
 }

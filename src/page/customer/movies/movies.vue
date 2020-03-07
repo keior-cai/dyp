@@ -21,8 +21,8 @@
     </div>
     <van-tabs v-model="activeName" @click="onClick">
       <van-tab
-        v-for="item in pspaceList"
-        :key="item"
+        v-for="(item, i) in pspaceList"
+        :key="i"
         :name="item"
         :title="item | formatTime('MM月DD日')"
       />
@@ -34,23 +34,34 @@
       @load="onLoad"
       >
         <div
-          v-for="item in spaceList"
-          :key="item.id"
+          v-for="(item, index) in spaceList"
+          :key="index"
           :class="{'underline':true}"
           @click="onClickItem(item)">
-          <div class="item-div name">
-            <span class="title">电影场地名称:</span><span class="value">{{item.name}}</span>
+          <div class="left">
+            <div class="item-div name">
+              <span class="title">电影场地名称:</span><span class="value">{{item.name}}</span>
+            </div>
+            <div class="item-div address">
+              <span class="title">影院位置:</span><span class="value">{{item.address}}</span>
+            </div>
+            <div class="item-div address">
+              <span class="title">剩余票数:</span><span class="value">{{item.num}}张</span>
+            </div>
+            <div class="item-div address">
+              <span class="title">播放时间:</span><span class="value">{{item.upTime}}</span>
+            </div>
           </div>
-          <div class="item-div address">
-            <span class="title">影院位置:</span><span class="value">{{item.address}}</span>
-          </div>
-          <div class="item-div price">
-            <span class="title">影票单价:</span><span class="red value">{{item.price}}元</span>
-            <span class="title vip-price">VIP单价:</span><span class="red value">{{item.vipPrice}}元</span>
-          </div>
-          <div class="item-div time">
-            <span class="title">播放时间:</span><span class="value">{{item.upTime}}</span>
-            <span class="title downTime">结束时间:</span><span class="value">{{item.downTime}}</span>
+          <div class="right">
+            <div class="item-div price">
+              <span class="title">VIP单价:</span><span class="red value">{{item.vipPrice | price(item.vipPrice)}}元</span>
+            </div>
+            <div class="item-div price">
+              <span class="title">VIP单价:</span><span class="red value">{{item.vipPrice | price(item.vipPrice)}}元</span>
+            </div>
+            <div class="item-div time">
+              <span class="title">结束时间:</span><span class="value">{{item.downTime}}</span>
+            </div>
           </div>
         </div>
       <div slot="loading">
@@ -67,11 +78,11 @@
       </van-notice-bar>
       <div class="line fe">屏幕</div>
       <div v-for="(item, index) in spaceLists"
-        :key="item"
+        :key="index"
         :index="index" style="text-align: center;">
         <div v-for="(i, iIndex) in item" :index="iIndex"
           @click="itemClick(index, iIndex, $event)"
-          :key="i"
+          :key="iIndex"
           :class="{
           'infoItem': true,
           'color': i
@@ -204,7 +215,6 @@ export default {
           location: `${e.x + 1}行${e.y + 1}位`
         })
       })
-      console.log(this.my)
       let price = this.my.isVip == 1 ? this.info.vipPrice : this.info.price
       let data = {
         psId: this.id,
@@ -310,23 +320,26 @@ export default {
     font-size 0.875rem
   .name
     margin-top 0.75rem
-  .item-div
-    width 100%
-    height 2.375rem
-    color #000000
-    padding-left 1.5625rem
-    background-color #FFFFFF
-    .underline
-      border 0.0625rem solid #EEEEEE
-      margin-top 0.5rem
-    .red
-      color #F03D37
-    .title
-      margin-right 0.625rem
-    .downTime
-      margin-left 1.75rem
-    .vip-price
-      margin-left 3.375rem
+  .left,.right
+    width 40%
+    display inline-block
+    .item-div
+      width 100%
+      height 2.375rem
+      color #000000
+      padding-left 1.5625rem
+      background-color #FFFFFF
+      .underline
+        border 0.0625rem solid #EEEEEE
+        margin-top 0.5rem
+      .red
+        color #F03D37
+      .title
+        margin-right 0.625rem
+      .downTime
+        margin-left 1.75rem
+      .vip-price
+        margin-left 3.375rem
   .fe
     background-color #FFFFFF
     height 5rem
