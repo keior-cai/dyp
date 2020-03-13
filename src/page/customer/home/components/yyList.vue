@@ -33,11 +33,7 @@
               <div class="flex line-ellipsis">{{item.address}}</div>
             </div>
             <div slot="tags">
-              <van-tag plain color="#589daf">退</van-tag>
-              <van-tag plain color="#589daf">改签</van-tag>
-              <van-tag plain color="#f90">小吃</van-tag>
-              <van-tag plain color="#f90">VIP</van-tag>
-              <div class="tag-footer">开通VIP特惠</div>
+              <van-notice-bar :text="item.yyInfo" left-icon="volume-o" />
             </div>
           </van-card>
           <div slot="loading">
