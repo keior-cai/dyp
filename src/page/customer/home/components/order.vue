@@ -109,6 +109,9 @@ export default {
   },
   mounted () {
     this.status = this.$route.params.status
+    if(this.status == undefined) {
+      this.status = null
+    }
     this.loadData()
   }
 }
