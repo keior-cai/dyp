@@ -94,12 +94,12 @@ export default {
           name: '已完成订单',
           color: '#00D500'
         },
-        {
-          id: 4,
-          icon: 'like',
-          name: '我想看的',
-          color: '#e54847'
-        },
+        // {
+        //   id: 4,
+        //   icon: 'like',
+        //   name: '我想看的',
+        //   color: '#e54847'
+        // },
         {
           id: 5,
           icon: 'shopping-cart-o',
@@ -112,18 +112,18 @@ export default {
           name: 'VIP',
           color: '#FAAF00'
         },
-        {
-          id: 7,
-          icon: 'chat-o',
-          name: '评论',
-          color: ''
-        },
-        {
-          id: 8,
-          icon: 'location-o',
-          name: '我去过的',
-          color: 'blue'
-        },
+        // {
+        //   id: 7,
+        //   icon: 'chat-o',
+        //   name: '评论',
+        //   color: ''
+        // },
+        // {
+        //   id: 8,
+        //   icon: 'location-o',
+        //   name: '我去过的',
+        //   color: 'blue'
+        // },
         {
           id: 9,
           icon: 'setting-o',

@@ -27,12 +27,12 @@
             @click="dyList(item.id)"
             >
             <div class="title" slot="title">
-              {{item.name}}<span class="price">38</span><span class="price-q">元起</span>
+              {{item.name}}
             </div>
             <div slot="desc" class="dy-cntent">
               <div class="flex line-ellipsis">{{item.address}}</div>
             </div>
-            <div slot="tags">
+            <div slot="tags" v-if="item.yyInfo">
               <van-notice-bar :text="item.yyInfo" left-icon="volume-o" />
             </div>
           </van-card>
